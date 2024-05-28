@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+	<header>
+		<h1>
+			ООО «Конди»
+		</h1>
+	</header>
+
+	<main>
+				<div class="form">
+
+						<h2>
+							Заявка на ремонт климатического оборудования
+						</h2>
+
+						<form action="https://script.google.com/macros/s/AKfycbxXGik-ecwSsr2sLQsoGTBbpkwacsJIAIOzdBxA1TfP1Ig0vu9zyL26URR-bq2AG6nrTA/exec?p1=1" method="POST" class="main_form" id="sheetdb-form" name="submit-to-google-sheet">
+
+							<!-- <input type="text" name="Дата" id="dateForm" style="display: none;" class="inform"> -->
+
+							<input type="text" name="ФИО" placeholder="Ваше ФИО" class="inform" required>
+
+							<input type="number" name="Номер" placeholder="Номер телефона (89...)" class="inform" required>
+
+								<select name="Тип оборудования" id="" class="inform" >
+									<option value="Тепловое оборудование или системы обогрева">
+										Тепловое оборудование или системы обогрева
+									</option>
+									<option value="Кондиционеры и многозадачные сплит-системы">
+										Кондиционеры и многозадачные сплит-системы
+									</option>
+									<option value="Климат оборудование (очистители, освежители и увлажнители воздуха)">
+										Климат оборудование (очистители, освежители и увлажнители воздуха)
+									</option>
+									<option value="Вентиляция">
+										Вентиляция
+									</option>
+									<option value="Водонагреватели">
+										Водонагреватели
+									</option>
+								</select>									
+
+							<input type="text" name="Модель" placeholder="Модель устройства" class="inform" required>
+
+							<textarea name="Проблема" id="" cols="30" rows="10" class="inform" placeholder="Описание проблемы"></textarea>
+
+							<input type="text" style="display: none;" value="Открыта" class="inform">
+
+							<input type="email" class="inform" placeholder="Ваша эл. почта">
+
+							<div style="font-size: 1.2rem; margin-bottom: .4rem; color: black;">
+								Свободные мастера:
+							</div>
+
+							<select name="" id="" class="inform">
+								<option value="Сергеев Петр Александрович">
+									Сергеев Петр Александрович
+								</option>
+
+								<option value="Сергеев Петр Александрович">
+									Бязров Виктор Сергеевич
+								</option>
+
+							</select>
+
+							<!-- <input type="text" value="Сергеев Петр Александрович" style="display: none;"> -->
+
+							<button>
+								<span style="vertical-align: middle;">Отправить </span>
+							</button>
+						</form>
+				</div>
+
+	</main>			
+</body>
+
+
+<footer>
+	<div>
+		Все права защищены <span>ООО «Конди»</span>
+	</div>
+</footer>
+
+<script>
+
+	let inputs = document.querySelectorAll('.inform')
+
+
+	// const scriptURL = 'https://script.google.com/macros/s/AKfycbyXl5DllG9l50FrueqdI_Ytc07Gf1FuGLZOiowe1sXiPa1gqhVFPqxw7sdBjXkMyXLcJw/exec?p1=1&p2=2&p3=3'
+
+			const form = document.forms['submit-to-google-sheet']
+			
+	// 		console.log(new Date())
+		
+			form.addEventListener('submit', e => {
+			
+				// document.querySelector('#dateForm').value = new Date()
+
+			  e.preventDefault()
+
+			  console.log(inputs[5].value)
+
+			  let scriptURL = `https://script.google.com/macros/s/AKfycbyJ2l3gc1DwfR-Eo_RAxzHvOa9BMM2JM40urCsjipRIrLI4QAL73N3SGJO6TeSakHBAQA/exec?p1=${inputs[0].value}&p2=${inputs[1].value}&p3=${inputs[2].value}&p4=${inputs[3].value}&p5=${inputs[4].value}&p6=${inputs[5].value}&p7=${inputs[6].value}&p8=${inputs[7].value}`
+
+			  fetch(scriptURL, {
+			  	method: 'POST',})
+				.then((response) => alert("Форма отправлена"))
+				.then(() => {  window.location.reload()})
+				.catch(error => console.error('Ошибка отправки', error.message))
+				.finally(()=>{alert('Ваша заявка в обработке'); window.location.reload()})
+			})
+
+</script>
+
+</html>
